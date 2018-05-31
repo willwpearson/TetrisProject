@@ -4,9 +4,13 @@ import tetris.controller.*;
 
 public class PieceL extends Tetris
 {
-	public PieceL()
+	private int[][] subArray;
+	
+	public PieceL(int[][] subArray)
 	{
 		super();
+		
+		this.subArray = subArray;
 	}
 	
 	public void rotatePiece()

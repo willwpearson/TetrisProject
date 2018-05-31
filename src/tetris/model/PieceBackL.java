@@ -4,7 +4,7 @@ import tetris.controller.*;
 
 public class PieceBackL extends Tetris
 {
-	public PieceBackL()
+	public PieceBackL(int[][] subArray)
 	{
 		super();
 	}
