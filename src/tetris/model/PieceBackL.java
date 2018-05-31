@@ -1,5 +1,21 @@
 package tetris.model;
 
-public class PieceBackL {
+import tetris.controller.*;
 
+public class PieceBackL extends Tetris
+{
+	public PieceBackL()
+	{
+		super();
+	}
+	
+	public void rotatePiece()
+	{
+		
+	}
+	
+	public void dropPiece()
+	{
+		
+	}
 }
