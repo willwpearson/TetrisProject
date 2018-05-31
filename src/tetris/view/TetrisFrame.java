@@ -22,7 +22,7 @@ public class TetrisFrame extends JFrame
 	public void setupFrame()
 	{
 		this.setContentPane(appPanel);		
-		this.setTitle("Triangular Arbitrage Bot");
+		this.setTitle("Playing Tetris");
 		this.setSize(500, 500);
 		this.setVisible(true);
 		this.setResizable(false);
