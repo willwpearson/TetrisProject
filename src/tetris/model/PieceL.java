@@ -3,14 +3,20 @@ package tetris.model;
 import tetris.controller.*;
 
 public class PieceL extends Tetris
-{
-	private int[][] subArray;
+{	
+	private int[][] firstArray;
+	private int[][] secondArray;
+	private int[][] thirdArray;
+	private int[][] fourthArray;
 	
-	public PieceL(int[][] subArray)
+	public PieceL()
 	{
 		super();
 		
-		this.subArray = subArray;
+		firstArray = new int[3][2];
+		secondArray = new int[2][3];
+		thirdArray = new int[3][2];
+		fourthArray = new int[2][3];
 	}
 	
 	public void rotatePiece()

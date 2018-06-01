@@ -2,16 +2,21 @@ package tetris.view;
 
 import tetris.controller.*;
 
-import javax.swing.JPanel;
-
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
-public class TetrisPanel extends JPanel
+public class TetrisPanel extends JPanel implements KeyListener
 {
 	private TetrisController appController;
 	private SpringLayout appLayout;
+	private int[][] grid;
+	private String[][] gridNums;
+	private int[][] selected;
 	
 	private JTable tetrisGrid;
 	private JButton startButton;
@@ -19,14 +24,25 @@ public class TetrisPanel extends JPanel
 	private JLabel scoreLabel;
 	private JLabel linesLabel;
 	
-	public TetrisPanel(TetrisController appController)
+	public TetrisPanel(TetrisController appController, int[][] grid)
 	{
 		super();
 		
 		this.appController = appController;
 		appLayout = new SpringLayout();
+		this.grid = grid;
+		this.setFocusable(true);
+		this.requestFocusInWindow();
+		gridNums = new String[18][10];
+		for(int row = 0; row < 18; row ++)
+		{
+			for(int col = 0; col < 10; col++)
+			{
+				gridNums[row][col] = grid[row][col] + "";
+			}
+		}
 		
-		tetrisGrid = new JTable(18, 10);
+		tetrisGrid = new JTable(gridNums, gridNums[0]);
 		startButton = new JButton("Start");
 		pauseButton = new JButton("Pause");
 		scoreLabel = new JLabel();
@@ -41,7 +57,8 @@ public class TetrisPanel extends JPanel
 	private void setupTable()
 	{
 		tetrisGrid.setGridColor(Color.black);
-		tetrisGrid.setBackground(Color.black);
+		//tetrisGrid.setBackground(Color.black);
+		tetrisGrid.setEnabled(false);
 		System.out.println(tetrisGrid.getRowHeight());
 		tetrisGrid.setRowHeight(26);
 	}
@@ -71,11 +88,105 @@ public class TetrisPanel extends JPanel
 	
 	private void setupListeners()
 	{
+		startButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				appController.start();
+			}
+		});
+		
+		pauseButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
+		
+		addKeyListener(this);
+	}
+	
+	public void updateBlockUp()
+	{
+		appController.passUp();
+	}
+	
+	public void updateBlockRight()
+	{
 		
 	}
 	
-	public void updateBlock()
+	public void updateBlockLeft()
 	{
 		
+	}
+	
+	public void drop()
+	{
+		appController.passDrop();
+	}
+	
+	public void updateTable(int[][] newGrid)
+	{
+		for(int row = 0; row < 18; row ++)
+		{
+			for(int col = 0; col < 10; col++)
+			{
+				gridNums[row][col] = newGrid[row][col] + "";
+			}
+		}
+		
+		tetrisGrid.repaint();
+		
+	}
+	
+	public void pause(int milliseconds)
+	  {
+	    try
+	    {
+	      Thread.sleep(milliseconds);
+	    }
+	    catch(InterruptedException e)
+	    {
+	      throw new RuntimeException(e);
+	    }
+	  }
+
+	@Override
+	public void keyTyped(KeyEvent e) 
+	{
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) 
+	{
+		if (e.getKeyCode() == KeyEvent.VK_UP) 
+		{
+            System.out.println("Up key pressed");
+            updateBlockUp();
+        }
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) 
+		{
+            System.out.println("Right key pressed");
+            updateBlockRight();
+        }
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) 
+		{
+            System.out.println("Left key pressed");
+            updateBlockLeft();
+        }
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) 
+		{
+            System.out.println("Space key pressed");
+            drop();
+        }
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) 
+	{
+
 	}
 }

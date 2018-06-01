@@ -8,13 +8,15 @@ public class TetrisFrame extends JFrame
 {
 	private TetrisController appController;
 	private TetrisPanel appPanel;
+	private int[][] grid;
 	
-	public TetrisFrame(TetrisController appController)
+	public TetrisFrame(TetrisController appController, int[][] grid)
 	{
 		super();
 		
+		this.grid = grid;
 		this.appController = appController;
-		appPanel = new TetrisPanel(appController);
+		appPanel = new TetrisPanel(appController, grid);
 		
 		setupFrame();
 	}
