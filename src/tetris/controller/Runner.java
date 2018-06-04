@@ -1,9 +1,9 @@
 package tetris.controller;
 
-public class TetrisRunner 
+public class Runner 
 {
 	public static void main(String [] args)
 	{
-		TetrisController app = new TetrisController();
+		Controller app = new Controller();
 	}
 }

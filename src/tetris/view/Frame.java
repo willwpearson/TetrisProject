@@ -4,19 +4,19 @@ import tetris.controller.*;
 
 import javax.swing.JFrame;
 
-public class TetrisFrame extends JFrame
+public class Frame extends JFrame
 {
-	private TetrisController appController;
+	private Controller appController;
 	private TetrisPanel appPanel;
 	private int[][] grid;
 	
-	public TetrisFrame(TetrisController appController, int[][] grid)
+	public Frame(Controller appController)
 	{
 		super();
 		
 		this.grid = grid;
 		this.appController = appController;
-		appPanel = new TetrisPanel(appController, grid);
+		appPanel = new TetrisPanel(appController);
 		
 		setupFrame();
 	}
@@ -30,8 +30,13 @@ public class TetrisFrame extends JFrame
 		this.setResizable(false);
 	}
 	
-	public TetrisController getTriController()
+	public Controller getController()
 	{
 		return appController;
+	}
+	
+	public TetrisPanel getPanel()
+	{
+		return appPanel;
 	}
 }

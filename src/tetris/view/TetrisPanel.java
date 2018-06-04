@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class TetrisPanel extends JPanel implements KeyListener
 {
-	private TetrisController appController;
+	private Controller appController;
 	private SpringLayout appLayout;
 	private int[][] grid;
 	private String[][] gridNums;
@@ -24,13 +24,13 @@ public class TetrisPanel extends JPanel implements KeyListener
 	private JLabel scoreLabel;
 	private JLabel linesLabel;
 	
-	public TetrisPanel(TetrisController appController, int[][] grid)
+	public TetrisPanel(Controller appController)
 	{
 		super();
 		
 		this.appController = appController;
 		appLayout = new SpringLayout();
-		this.grid = grid;
+		this.grid = appController.getGrid();
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		gridNums = new String[18][10];

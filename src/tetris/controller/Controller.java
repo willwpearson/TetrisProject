@@ -1,9 +1,8 @@
 package tetris.controller;
 
 import tetris.view.*;
-import tetris.model.*;
 
-public class TetrisController 
+public class Controller 
 {
 	//Blocks
 	public final int EMTPY = 0;
@@ -15,17 +14,17 @@ public class TetrisController
 	public final int PIECEZ = 6;
 	public final int PIECEBACKZ = 7;
 	
-	private TetrisFrame appFrame;
+	private Frame appFrame;
 	private TetrisPanel appPanel;
 	
 	private int[][] grid;
 	
-	public TetrisController()
+	public Controller()
 	{
 		grid = new int[18][10];
 		
-		appFrame = new TetrisFrame(this, grid);
-		appPanel = new TetrisPanel(this, grid);
+		appFrame = new Frame(this);
+		appPanel = appFrame.getPanel();
 	}
 	
 	public void start()
@@ -58,5 +57,15 @@ public class TetrisController
 	public void passDrop()
 	{
 		
+	}
+	
+	public TetrisPanel getPanel()
+	{
+		return appPanel;
+	}
+	
+	public int[][] getGrid()
+	{
+		return grid;
 	}
 }
